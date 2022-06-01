@@ -1,6 +1,15 @@
+'use strict';
+
+const babelRegister = require('@babel/register');
+babelRegister({
+  ignore: [/[\\\/](build|server\/server|node_modules)[\\\/]/],
+  presets: [['react-app', {runtime: 'automatic'}]],
+  plugins: ['@babel/plugin-transform-modules-commonjs'],
+});
+
 const express = require('express');
 const compress = require('compression');
-const { readFileSync } = require('fs');
+const render = require('./render');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -11,16 +20,7 @@ app.use((req, res, next) => {
 
 app.use(compress());
 app.get('/', (req, res) => {
-  res.setHeader('Content-type', 'text/html');
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <title>React App</title>
-      <body>
-        <h1>Opps</h1>
-      </body>
-    </html>
-  `);
+  render(req.url, res);
 });
 
 app
