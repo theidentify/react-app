@@ -2,7 +2,10 @@
   "name": "react-app",
   "version": "1.0.0",
   "description": "my first build react app",
-  "scripts": {},
+  "scripts": {
+    "start": "npm run server:dev",
+    "server:dev": "cross-env NODE_ENV=development nodemon -- server/server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
