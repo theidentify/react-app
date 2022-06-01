@@ -6,4 +6,4 @@ use wired up technic
 
 # Setup
 - `npm install`
-- `npm run start`
+- `npm run start` 
